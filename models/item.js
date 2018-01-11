@@ -3,13 +3,13 @@ var tableName = "dataService";
 var id = "uid";
 
 var item = {
-  getAllProduct : function(callback) {
+  getAllItems : function(callback) {
     return db.query("SELECT * from " + tableName, callback);
   },
-  getProduct : function(id, callback) {
+  getItem : function(id, callback) {
     return db.query("SELECT * from " + tableName + " where " + id + "=?", [id], callback);
   },
-  addProduct : function(Item, callback) {
+  addItem : function(Item, callback) {
     return db.query("INSERT into " + tableName + " values(?,?,?,?,?,?)",
       [
         Item.uid,
@@ -21,7 +21,7 @@ var item = {
       ],
       callback);
   },
-  updateProduct : function(Item, callback) {
+  updateItem : function(Item, callback) {
     return db.query("UPDATE " + tableName + " SET values(?,?,?,?,?,?)",
       [
         Item.uid,
@@ -33,7 +33,7 @@ var item = {
       ],
       callback);
   },
-  deleteProduct : function(id, callback) {
+  deleteItem : function(id, callback) {
     return db.query("DELETE from " + tableName + " where " + id + "=?", [id], callback);
   }
 };

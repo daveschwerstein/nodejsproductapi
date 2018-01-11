@@ -5,7 +5,7 @@ var item = require("../models/item");
 // www.xyz.com/students/1
 router.get('/:id?', function(req, res, next) {
   if (req.params.id) {
-    item.getitem(req.params.id, function(err, rows) {
+    item.getItem(req.params.id, function(err, rows) {
       if (err) {
         res.json(err);
       } else {
@@ -24,7 +24,7 @@ router.get('/:id?', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  item.additem(req.body, function(err, count) {
+  item.addItem(req.body, function(err, count) {
     if (err) {
       res.json(err);
     } else {
@@ -35,7 +35,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-  item.deleteitem(req.params.id, function(err, count) {
+  item.deleteItem(req.params.id, function(err, count) {
     if (err) {
       res.json(err);
     } else {

@@ -6,41 +6,35 @@ var item = require("../models/item");
 router.get('/:id?', function(req, res, next) {
   if (req.params.id) {
     item.getItem(req.params.id, function(err, rows) {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(rows);
-      }
+      if (err) throw err;
+      res.json(rows);
     });
   } else {
     item.getAllItems(function(err, rows) {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(rows);
-      }
+      if (err) throw err;
+      res.json(rows);
     });
   }
 });
 
-router.post('/', function(req, res, next) {
-  item.addItem(req.body, function(err, count) {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(req.body);
-      //or return count for 1 or 0
-    }
-  });
+router.post('/:id?', function(req, res, next) {
+  if (req.params.id) {
+    item.updateItem(req.body[0], function(err, count) {
+      if (err) throw err;
+      res.json(req.body[0]);
+    });
+  } else {
+    item.addItem(req.body[0], function(err, count) {
+      if (err) throw err;
+      res.json(req.body[0]);
+    });
+  }
 });
 
 router.delete('/:id', function(req, res, next) {
   item.deleteItem(req.params.id, function(err, count) {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(count);
-    }
+    if (err) throw err;
+    res.json(count);
   });
 });
 module.exports = router;

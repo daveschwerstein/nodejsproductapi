@@ -11,7 +11,7 @@ var item = {
   },
   addItem : function(Item, callback) {
     let uid = Math.random() * 99999999;
-    return db.query(`INSERT INTO ${tableName} values(?,?,?,?,?,?)`,
+    return db.query(`INSERT INTO ${tableName} values(?,?,?,?,?,?,?)`,
       [
         uid,
         Item.item_name,
@@ -19,6 +19,7 @@ var item = {
         Item.item_type,
         Item.transaction_location,
         Item.transaction_date,
+        Item.transaction_description
       ],
       callback);
   },
@@ -30,6 +31,7 @@ var item = {
       Item.item_amount + "',`item_type`='" +
       Item.item_type + "',`transaction_location`='" +
       Item.transaction_location + "',`transaction_date`='" +
+      Item.transaction_description + "',`transaction_description`='" +
       Item.transaction_date + "' WHERE `uid`=" + Item.uid, callback);
   },
   deleteItem : function(id, callback) {
